@@ -40,6 +40,7 @@ describe('#Configurer', () => {
       const expectedConfigurerData = <ConfigurerData>{
         analysisFolder: '',
         outputFolder: '',
+        templateFolder: 'templates',
         theme: 'white'
       };
       program['analysis'] = '';
@@ -55,6 +56,7 @@ describe('#Configurer', () => {
       const expectedConfigurerData = <ConfigurerData>{
         analysisFolder: analysisFolder,
         outputFolder: '',
+        templateFolder: 'templates',
         theme: 'white'
       };
       program['analysis'] = analysisFolder;
@@ -70,6 +72,7 @@ describe('#Configurer', () => {
       const expectedConfigurerData = <ConfigurerData>{
         analysisFolder: '',
         outputFolder: outputFolder,
+        templateFolder: 'templates',
         theme: 'white'
       };
       program['analysis'] = '';
@@ -85,6 +88,7 @@ describe('#Configurer', () => {
       const expectedConfigurerData = <ConfigurerData>{
         analysisFolder: '',
         outputFolder: '',
+        templateFolder: 'templates',
         theme: theme
       };
       program['analysis'] = '';
@@ -101,11 +105,45 @@ describe('#Configurer', () => {
       const expectedConfigurerData = <ConfigurerData>{
         analysisFolder: '',
         outputFolder: '',
+        templateFolder: 'templates',
         theme: 'white'
       };
       program['analysis'] = '';
       program['output'] = '';
       program['theme'] = theme;
+
+      const data = configurer.fetchData();
+
+      expect(data).to.deep.equal(expectedConfigurerData);
+    });
+
+    it('should return customized templates folder', () => {
+      const templateFolder = 'sometemplate';
+      const expectedConfigurerData = <ConfigurerData>{
+        analysisFolder: '',
+        outputFolder: '',
+        templateFolder: templateFolder,
+        theme: 'white'
+      };
+      program['analysis'] = '';
+      program['output'] = '';
+      program['templates'] = templateFolder;
+
+      const data = configurer.fetchData();
+
+      expect(data).to.deep.equal(expectedConfigurerData);
+    });
+
+    it('should return default templates folder', () => {
+      const expectedConfigurerData = <ConfigurerData>{
+        analysisFolder: '',
+        outputFolder: '',
+        templateFolder: 'templates',
+        theme: 'white'
+      };
+      program['analysis'] = '';
+      program['output'] = '';
+      program['theme'] = 'white';
 
       const data = configurer.fetchData();
 
