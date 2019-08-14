@@ -19,3 +19,4 @@ coverage
 
 # private
 .coveralls.yml
+.vscode/
