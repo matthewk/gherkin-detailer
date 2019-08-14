@@ -16,3 +16,4 @@ tsconfig.build.json
 tslint.json
 yarn.lock
 CHANGELOG.md
+.vscode
